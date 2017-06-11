@@ -36,14 +36,14 @@ class Model(object):
             reshape = tf.reshape(h_pool2, [-1, 7 * 7 * 64])
             W_fc1 = self._create_weights([7 * 7 * 64, 1024])
             b_fc1 = self._create_bias([1024])
-            local1 = tf.nn.relu(tf.matmul(reshape, W_fc1) + b_fc1, name = scope.name)
+            local1 = tf.nn.relu(tf.matmul(reshape, W_fc1) + b_fc1, name = 'fc1_relu1')
             self._activation_summary(local1)
 
         with tf.name_scope('local2_linear') as scope:
             W_fc2 = self._create_weights([1024, self._num_labels])
             b_fc2 = self._create_bias([self._num_labels])
             local1_drop = tf.nn.dropout(local1, keep_prob)
-            local2 = tf.nn.bias_add(tf.matmul(local1_drop, W_fc2), b_fc2, name = scope.name)
+            local2 = tf.nn.bias_add(tf.matmul(local1_drop, W_fc2), b_fc2, name = 'fc2_relu2')
         return local2
     
     def train(self, loss, global_step):
@@ -54,13 +54,13 @@ class Model(object):
     def loss(self, logits, labels):
         with tf.name_scope('loss') as scope:
             cross_entropy = tf.nn.softmax_cross_entropy_with_logits(logits = logits, labels = labels)
-            cost = tf.reduce_mean(cross_entropy, name = scope.name)
+            cost = tf.reduce_mean(cross_entropy, name = 'loss')
             tf.summary.scalar('cost', cost)
         return cost
     
     def accuracy(self, logits, labels):
         with tf.variable_scope('accuracy') as scope:
-            accuracy = tf.reduce_mean(tf.cast(tf.equal( tf.argmax(logits, 1), tf.argmax(labels, 1)), dtype=tf.float32), name = scope.name)
+            accuracy = tf.reduce_mean(tf.cast(tf.equal( tf.argmax(logits, 1), tf.argmax(labels, 1)), dtype=tf.float32), name = 'accuracy')
             tf.summary.scalar('accuracy', accuracy)
         return accuracy
     
