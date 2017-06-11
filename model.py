@@ -15,7 +15,7 @@ class Model(object):
             conv = self._create_conv2d(images, kernel)
             bias = self._create_bias([32])
             preactivation = tf.nn.bias_add(conv, bias)
-            conv1 = tf.nn.relu(preactivation, name = scope.name)
+            conv1 = tf.nn.relu(preactivation, name = 'relu1')
             self._activation_summary(conv1)
         
         # pool 1
@@ -26,7 +26,7 @@ class Model(object):
             conv = self._create_conv2d(h_pool1, kernel)
             bias = self._create_bias([64])
             preactivation = tf.nn.bias_add(conv, bias)
-            conv2 = tf.nn.relu(preactivation, name = scope.name)
+            conv2 = tf.nn.relu(preactivation, name = 'relu2')
             self._activation_summary(conv2)
         
         # pool 2
