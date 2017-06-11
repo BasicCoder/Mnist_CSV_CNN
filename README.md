@@ -5,10 +5,10 @@
    > - Tensorflow 1.1
 
 ## 2. Code:
-mnist.py : read train and test data
-model.py : create a model
-train.py : train model
-evaluate.py : evaluate model
+mnist.py : read train and test data<br/>
+model.py : create a model<br/>
+train.py : train model<br/>
+evaluate.py : evaluate model<br/>
 
 ## 3. Data:
 DownLoad Link:([Train_data](https://pjreddie.com/media/files/mnist_train.csv) [Test_data](https://pjreddie.com/media/files/mnist_test.csv))
