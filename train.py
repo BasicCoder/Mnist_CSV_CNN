@@ -3,8 +3,8 @@
 
 import tensorflow as tf 
 
-import Mnist_CSV_CNN.mnist as mnist
-from Mnist_CSV_CNN.model import Model
+import mnist 
+from model import Model
 
 FLAGS = tf.app.flags.FLAGS 
 NUM_LABELS = 10
